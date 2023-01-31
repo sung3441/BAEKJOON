@@ -1,22 +1,26 @@
-import java.util.Scanner;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
-public class Main{
-    public static void main(String[] args){
+public class Main {
+    public static void main(String[] args) throws Exception {
         
-        Scanner sc = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] strArr = br.readLine().split(" ");
+        int n = Integer.parseInt(strArr[0]);
+        int x = Integer.parseInt(strArr[1]);
         
-        int n = sc.nextInt();
-        int x = sc.nextInt();
-        String space = sc.nextLine(); //줄 바꿈용
+        int[] arr = Arrays.stream(br.readLine().split(" "))
+            .mapToInt(Integer::parseInt)
+            .toArray();
         
-        String result = "";
-        
-        for(int i = 0; i < n; i++){
-            int num = sc.nextInt();
-            if(num < x){
-                result += num+" ";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < arr.length; i++) {
+            if (x > arr[i]) {
+                sb.append(arr[i] + " ");
             }
         }
-        System.out.println(result);
+        System.out.print(sb.toString());
     }
 }
