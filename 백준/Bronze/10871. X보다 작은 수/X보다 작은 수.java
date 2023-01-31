@@ -10,15 +10,13 @@ public class Main {
         String[] strArr = br.readLine().split(" ");
         int n = Integer.parseInt(strArr[0]);
         int x = Integer.parseInt(strArr[1]);
-        
-        int[] arr = Arrays.stream(br.readLine().split(" "))
-            .mapToInt(Integer::parseInt)
-            .toArray();
+        StringTokenizer st = new StringTokenizer(br.readLine());
         
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < arr.length; i++) {
-            if (x > arr[i]) {
-                sb.append(arr[i] + " ");
+        for (int i = 0; i < n; i++) {
+            int num = Integer.parseInt(st.nextToken());
+            if (x > num) {
+                sb.append(num + " ");
             }
         }
         System.out.print(sb.toString());
