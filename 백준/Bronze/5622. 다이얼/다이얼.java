@@ -8,10 +8,8 @@ public class Main {
         char[] alphas = new BufferedReader(new InputStreamReader(System.in))
                 .readLine().toCharArray();
         for (char alpha : alphas) {
-            int cnt = -1;
-            for (int i = 65; i <= 87; i += arr[cnt]) {
-                cnt++;
-                if ((int) alpha >= i && (int) alpha <= i + arr[cnt] - 1) {
+            for (int cnt = 0, i = 65; i <= 87; i += arr[cnt++]) {
+                if (alpha >= i && alpha <= i + arr[cnt] - 1) {
                     result += (cnt + 3);
                 }
             }
