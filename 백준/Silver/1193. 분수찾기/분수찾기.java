@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        long n = Long.parseLong(br.readLine());
+        int n = Integer.parseInt(br.readLine());
         int cnt = 0;
         int sum = 0;
         while (true) {
@@ -13,8 +13,9 @@ public class Main {
                 break;
             }
         }
-        long i = n - (sum - cnt);
-        String result = cnt % 2 == 0 ? i + "/" + (cnt + 1 - i) : (cnt + 1 - i) + "/" + i;
+        int i = n - (sum - cnt);
+        int j = cnt + 1 - i;
+        String result = cnt % 2 == 0 ? i + "/" + j : j + "/" + i;
         System.out.print(result);
     }
 }
