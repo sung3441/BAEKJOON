@@ -7,11 +7,11 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        long fix = Long.parseLong(st.nextToken());
-        long var = Long.parseLong(st.nextToken());
-        long price = Long.parseLong(st.nextToken());
+        int fix = Integer.parseInt(st.nextToken());
+        int var = Integer.parseInt(st.nextToken());
+        int price = Integer.parseInt(st.nextToken());
 
-        long result = var >= price ? -1 : (fix / (price - var)) + 1;
+        int result = var >= price ? -1 : (fix / (price - var)) + 1;
         System.out.print(result);
     }
 }
