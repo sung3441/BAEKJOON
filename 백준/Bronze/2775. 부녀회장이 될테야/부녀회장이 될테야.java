@@ -7,22 +7,21 @@ public class Main {
         int t = Integer.parseInt(br.readLine());
         int[][] apt;
 
-        for (int y = 0; y < t; y++) {
+        for (int i = 0; i < t; i++) {
             int k = Integer.parseInt(br.readLine());
             int n = Integer.parseInt(br.readLine());
             apt = new int[k + 1][n];
 
-            for (int i = 0; i < k + 1; i++) {
-                for (int j = 0; j < n; j++) {
-                    if (i == 0) {
-                        apt[i][j] = j + 1;
-                        continue;
-                    }
+            for (int col = 0; col < n; col++) {
+                apt[0][col] = col + 1; 
+            }
+            for (int row = 1; row < k + 1; row++) {
+                for (int col = 0; col < n; col++) {
                     int sum = 0;
-                    for (int u = 0; u < j + 1; u++) {
-                        sum += apt[i - 1][u];
+                    for (int j = 0; j < col + 1; j++) {
+                        sum += apt[row - 1][j];
                     }
-                    apt[i][j] = sum;
+                    apt[row][col] = sum;
                 }
             }
             System.out.println(apt[k][n - 1]);
