@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -10,15 +9,21 @@ public class Main {
         int m = Integer.parseInt(st.nextToken());
         int n = Integer.parseInt(st.nextToken());
         boolean[] arr = new boolean[n + 1];
-        IntStream.range(2, arr.length).forEach(i -> arr[i] = true);
+        arr[0] = true;
+        arr[1] = true;
 
         for (int i = 2; i * i <= n; i++) {
-            if (arr[i]) {
+            if (!arr[i]) {
                 for (int j = i * 2; j < arr.length; j += i) {
-                    arr[j] = false;
+                    arr[j] = true;
                 }
             }
         }
-        IntStream.range(m, n + 1).filter(i -> arr[i]).forEach(System.out::println);
+
+        for (int i = m; i <= n; i++) {
+            if (!arr[i]) {
+                System.out.println(i);
+            }
+        }
     }
 }
