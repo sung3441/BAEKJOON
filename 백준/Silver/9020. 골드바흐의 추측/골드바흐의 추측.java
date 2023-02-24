@@ -6,14 +6,11 @@ public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        int[] numArr = new int[n];
+        boolean[] sosuArr = getSosuArr(10_000);
 
-        for (int i = 0; i < n; i++) numArr[i] = Integer.parseInt(br.readLine());
-        boolean[] sosuArr = getSosuArr(Arrays.stream(numArr).max().getAsInt());
-
-        for (int i = 0; i < numArr.length; i++) {
+        for (int i = 0; i < n; i++) {
             int minSosu = 10_000;
-            int num = numArr[i];
+            int num = Integer.parseInt(br.readLine());
 
             for (int j = 2; j + j <= num; j++) {
                 if (sosuArr[j] && sosuArr[num - j]) {
