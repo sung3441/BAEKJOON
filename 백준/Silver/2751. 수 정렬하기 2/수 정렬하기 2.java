@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Main {
 
@@ -15,11 +14,7 @@ public class Main {
             list.add(Integer.parseInt(br.readLine()));
         }
 
-        Collections.sort(list);
-
-        for (Integer i : list) {
-            sb.append(i + "\n");
-        }
+        list.stream().sorted().forEach(i -> sb.append(i + "\n"));
 
         System.out.println(sb);
     }
