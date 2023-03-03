@@ -12,14 +12,16 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         for (int i = 0; i < n; i++) {
             String[] arr = br.readLine().split(" ");
-            list.add(new Person(arr[0], i, arr[1]));
+            list.add(new Person(arr[0], arr[1]));
         }
         Collections.sort(list, (p1, p2) -> {
-            if (p1.age < p2.age) return -1;
-            else if (p1.age == p2.age) {
-                return p1.order < p2.order ? -1 : 1;
+            if (p1.age == p2.age) {
+                return 0;
             }
-            else return 1;
+            if (p1.age < p2.age) {
+                return -1;
+            }
+            return 1;
         });
 
         for (Person person : list) {
@@ -31,12 +33,10 @@ public class Main {
 
 class Person {
     int age;
-    int order;
     String name;
 
-    public Person(String age, int order, String name) {
+    public Person(String age, String name) {
         this.age = Integer.parseInt(age);
-        this.order = order;
         this.name = name;
     }
 }
