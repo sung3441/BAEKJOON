@@ -33,23 +33,22 @@ public class Main {
 
     static int 최빈값(int[] arr) {
         StringBuilder sb = new StringBuilder();
-        int max = 0;
         Map<Integer, Integer> map = new HashMap();
+        int max = 0;
         for (int i : arr) {
-            map.put(i, map.getOrDefault(i, 0) + 1);
-            if (map.get(i) > max) {
+            int value = map.getOrDefault(i, 0) + 1;
+            map.put(i, value);
+            if (value > max) {
                 sb.setLength(0);
                 sb.append(i);
-                max = map.get(i);
+                max = value;
                 continue;
             }
-            if (map.get(i) == max) {
-                sb.append(",").append(i);
-                continue;
-            }
+            if (value == max) sb.append(",").append(i);
         }
-        String numStr = sb.indexOf(",") == -1 ? sb.toString() : sb.toString().split(",")[1];
-        return Integer.parseInt(numStr);
+        return Integer.parseInt(sb.indexOf(",") == -1
+                ? sb.toString()
+                : sb.toString().split(",")[1]);
     }
 
     static int 범위(int[] arr) {
