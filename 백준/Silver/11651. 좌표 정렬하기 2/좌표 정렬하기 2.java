@@ -17,10 +17,8 @@ public class Main {
             points.add(new Point(split[0], split[1]));
         }
 
-        Collections.sort(points, (p1, p2) -> {
-            if (p1.y > p2.y || (p1.y == p2.y && p1.x > p2.x)) return 1;
-            return -1;
-        });
+        Collections.sort(points, (p1, p2)
+                -> (p1.y > p2.y || (p1.y == p2.y && p1.x > p2.x)) ? 1 : -1);
 
         for (Point point : points) {
             sb.append(point.x).append(" ").append(point.y).append("\n");
