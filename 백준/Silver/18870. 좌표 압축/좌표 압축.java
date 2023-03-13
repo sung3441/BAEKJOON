@@ -8,21 +8,27 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int[] arr = new int[n];
+        String[] input = br.readLine().split(" ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = Integer.parseInt(input[i]);
+        }
+
+        int[] sortedArr = Arrays.copyOf(arr, n);
+        Arrays.sort(sortedArr);
         HashMap<Integer, Integer> map = new HashMap<>();
+        int idx = 0;
+        for (int num : sortedArr) {
+            if (!map.containsKey(num)) {
+                map.put(num, idx++);
+            }
+        }
+
         StringBuilder sb = new StringBuilder();
-        br.readLine();
-        int[] arr = Arrays.stream(br.readLine().split(" "))
-                .mapToInt(Integer::parseInt).toArray();
-
-        int[] sort = Arrays.stream(arr).distinct().sorted().toArray();
-        for (int i = 0; i < sort.length; i++) {
-            map.put(sort[i], i);
+        for (int num : arr) {
+            sb.append(map.get(num)).append(" ");
         }
-
-        for (int i : arr) {
-            sb.append(map.get(i)).append(" ");
-        }
-
-        System.out.println(sb);
+        System.out.println(sb.toString());
     }
 }
