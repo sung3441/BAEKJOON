@@ -28,19 +28,16 @@ public class Main {
 
     static int solution(int n, int m, String[][] board) {
         String startColor = board[n][m];
-        int recoverCountA = 0;
-        int recoverCountB = 0;
+        int recoverCount = 0;
         for (int i = n; i < n + 8; i++) {
             for (int j = m; j < m + 8; j++) {
                 String color = board[i][j];
                 if ((j - m + 1) % 2 == 0 ? startColor.equals(color) : !startColor.equals(color)) {
-                    recoverCountA++;
-                    continue;
+                    recoverCount++;
                 }
-                recoverCountB++;
             }
             startColor = startColor.equals("B") ? "W" : "B";
         }
-        return recoverCountA < recoverCountB ? recoverCountA : recoverCountB;
+        return recoverCount > 32 ? 64 - recoverCount : recoverCount;
     }
 }
