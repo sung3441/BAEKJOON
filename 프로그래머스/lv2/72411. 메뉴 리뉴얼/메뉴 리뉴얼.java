@@ -2,14 +2,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 class Solution {
-    public static void main(String[] args) throws Exception {
-        Solution solution = new Solution();
-        String[] result = solution.solution(new String[]{"ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"}, new int[]{2, 3, 5});
-        for (String s : result) {
-            System.out.println(s);
-        }
-    }
-
     public String[] solution(String[] orders, int[] course) {
         List<String> result = new ArrayList<>();
 
