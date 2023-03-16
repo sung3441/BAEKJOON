@@ -2,6 +2,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 class Solution {
+    public static void main(String[] args) throws Exception {
+        Solution solution = new Solution();
+        String[] result = solution.solution(new String[]{"ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"}, new int[]{2, 3, 5});
+        for (String s : result) {
+            System.out.println(s);
+        }
+    }
+
     public String[] solution(String[] orders, int[] course) {
         List<String> result = new ArrayList<>();
 
@@ -27,12 +35,8 @@ class Solution {
 
             orderStatistics(menus, visited, 0, menus.size(), courseCount, courseMap); // 주문 통계
         }
-        
-        if (courseMap.values().isEmpty()) {
-            return bestCourseList;
-        }
 
-        Integer maxOrderCount = Collections.max(courseMap.values());
+        Integer maxOrderCount = courseMap.values().isEmpty() ? 1 : Collections.max(courseMap.values());
         if (maxOrderCount < 2) { // 최소 두 명 이상이 주문한 조합
             return bestCourseList;
         }
