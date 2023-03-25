@@ -12,8 +12,6 @@ public class Main {
             array[i] = Integer.parseInt(br.readLine());
         }
 
-        array = Arrays.stream(array).sorted().toArray();
-
         int gcd = array[1] - array[0];
         for (int i = 1; i < array.length - 1; i++) {
             int minus = array[i] - array[i - 1];
