@@ -14,7 +14,7 @@ public class Main {
         int m = Integer.parseInt(split[1]);
         int count = 1;
 
-        while (n-- > 0) {
+        for (int i = 0; i < n; i++) {
             String name = br.readLine();
             if (!stringMap.containsKey(name)) {
                 stringMap.put(name, count);
@@ -22,7 +22,7 @@ public class Main {
             }
         }
 
-        while (m-- > 0) {
+        for (int i = 0; i < m; i++) {
             String key = br.readLine();
             Object value = stringMap.containsKey(key) ? stringMap.get(key) : integerMap.get(key);
             sb.append(value).append("\n");
