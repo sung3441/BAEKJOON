@@ -10,9 +10,6 @@ public class Main {
 
     static String radix(int num, int n) {
         StringBuilder sb = new StringBuilder();
-        if (num == 0) {
-            return "0";
-        }
         while (num > 0) {
             if (num % n < 10) {
                 sb.append((char) (num % n + '0'));
