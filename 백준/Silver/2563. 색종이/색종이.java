@@ -15,10 +15,13 @@ public class Main {
 
             for (int i = x; i < x + 10; i++) {
                 for (int j = y; j < y + 10; j++) {
-                    if (arr[i][j]) {
-                        continue;
-                    }
                     arr[i][j] = true;
+                }
+            }
+        }
+        for (boolean[] booleans : arr) {
+            for (boolean b : booleans) {
+                if (b) {
                     count++;
                 }
             }
