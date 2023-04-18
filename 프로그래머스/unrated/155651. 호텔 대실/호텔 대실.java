@@ -1,69 +1,25 @@
-import java.util.*;
-import java.util.stream.Collectors;
-
 class Solution {
+    
     public int solution(String[][] book_time) {
-        Hotel hotel = new Hotel();
-        List<Customer> customers = Arrays.stream(book_time)
-                .map(strings -> new Customer(strings[0], strings[1]))
-                .sorted(Comparator.comparingInt(o -> o.checkinTime))
-                .collect(Collectors.toList());
-
-        for (Customer customer : customers) {
-            hotel.checkIn(customer);
+        int result = 0;
+        
+        int[] arr = new int[1_450];
+        for (String[] times : book_time) {
+            arr[calTime(times[0])] += 1;
+            arr[calTime(times[1]) + 10] -= 1;
         }
-        return hotel.rooms.size();
-    }
-}
-
-class Hotel {
-    ArrayList<Room> rooms = new ArrayList<>();
-
-    void checkIn(Customer customer) {
-        Room room = findEmptyRoom(customer.checkinTime);
-        room.cleaningRoom(customer.checkoutTime);
-        roomArrangement();
-    }
-
-    void roomArrangement() {
-        rooms.sort(Comparator.comparingInt(o -> o.lastCleaningTime));
-    }
-
-    Room findEmptyRoom(int checkinTime) {
-        for (Room room : rooms) {
-            if (room.isVacant(checkinTime)) {
-                return room;
-            }
+        
+        for (int i = 1; i < arr.length; i++) {
+            arr[i] += arr[i - 1];
+            result = Math.max(result, arr[i]);
         }
-        rooms.add(new Room());
-        return rooms.get(rooms.size() - 1);
+        return result;
     }
-}
-
-class Room {
-    int lastCleaningTime = 0;
-
-    boolean isVacant(int checkInTime) {
-        return lastCleaningTime <= checkInTime;
-    }
-
-    void cleaningRoom(int checkoutTime) {
-        lastCleaningTime = checkoutTime + 600;
-    }
-}
-
-class Customer {
-    // 0 ~ 86,340
-    int checkinTime;
-    int checkoutTime;
-
-    public Customer(String checkinTime, String checkoutTime) {
-        this.checkinTime = stringTimeToIntTime(checkinTime);
-        this.checkoutTime = stringTimeToIntTime(checkoutTime);
-    }
-
-    int stringTimeToIntTime(String time) {
-        String[] split = time.split(":");
-        return (Integer.parseInt(split[0]) * 60 * 60) + (Integer.parseInt(split[1]) * 60);
+    
+    int calTime(String timeStr) {
+        String[] times = timeStr.split(":");
+        int start = Integer.parseInt(times[0]);
+        int end = Integer.parseInt(times[1]);
+        return start * 60 + end;
     }
 }
