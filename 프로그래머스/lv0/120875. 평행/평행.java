@@ -1,21 +1,20 @@
 class Solution {
     public int solution(int[][] dots) {
-        for (int i = 0; i < dots.length - 1; i++) {
-            for (int j = i + 1; j < dots.length; j++) {
-                int point = (Math.abs(i - j)) % 2 == 0 ? 1 : 2;
-                int indexI = (j + point) % 4;
-                int indexJ = (i + point) % 4;
-
-                int x1 = dots[i][0] - dots[j][0];
-                int y1 = dots[i][1] - dots[j][1];
-                int x2 = dots[indexI][0] - dots[indexJ][0];
-                int y2 = dots[indexI][1] - dots[indexJ][1];
-
-                if ((double) x1 / y1 == (double) x2 / y2) {
-                    return 1;
-                }
-            }
+        
+        if (Math.abs((double) (dots[0][0] - dots[1][0]) / (dots[0][1] - dots[1][1])) == Math.abs((double) (dots[2][0] - dots[3][0]) / (dots[2][1] - dots[3][1]))) {
+            return 1;
         }
+        
+        if (Math.abs((double) (dots[0][0] - dots[2][0]) / (dots[0][1] - dots[2][1])) == Math.abs((double) (dots[1][0] - dots[3][0]) / (dots[1][1] - dots[3][1]))) {
+            System.out.println("2");
+            return 1;
+        }
+        
+        if (Math.abs((double) (dots[0][0] - dots[3][0]) / (dots[0][1] - dots[3][1])) == Math.abs((double) (dots[2][0] - dots[1][0]) / (dots[2][1] - dots[1][1]))) {
+            System.out.println("3");
+            return 1;
+        }
+        
         return 0;
     }
 }
