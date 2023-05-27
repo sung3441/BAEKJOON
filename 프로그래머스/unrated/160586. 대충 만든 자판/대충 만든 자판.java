@@ -1,39 +1,33 @@
-import java.util.*;
+import java.util.HashMap;
 
-public class Solution {
-    public static int[] solution(String[] keymap, String[] targets){
-
+class Solution {
+    public int[] solution(String[] keymap, String[] targets) {
+        HashMap<Integer, Integer> map = new HashMap<>();
         int[] answer = new int[targets.length];
-        for (int i = 0; i < targets.length; i++) {
-            String target = targets[i];
-            int minPress = getMinButtonPress(target, keymap);
-            answer[i] = minPress;
-        }
-
-        return answer;
-    }
-
-    private static int getMinButtonPress(String target, String[] buttonMap) {
-        int totalButtonCount = 0;
-        for (char c : target.toCharArray()) {
-            int minButtonCount = Integer.MAX_VALUE;
-            for (String button : buttonMap) {
-                int buttonCount = button.indexOf(c) + 1;
-                if (buttonCount > 0 && buttonCount < minButtonCount) {
-                    minButtonCount = buttonCount;
+        for (int i = 65; i <= 91; i++) {
+            int min = 100;
+            for (String key : keymap) {
+                int idx = key.indexOf(i);
+                if (idx == -1) continue;
+                if (idx < min) {
+                    min = idx;
+                    map.put(i, idx + 1);
                 }
             }
-            if (minButtonCount == Integer.MAX_VALUE) {
-                return -1;
-            }
-            totalButtonCount += minButtonCount;
         }
-        return totalButtonCount;
-    }
-
-    public static void main(String[] args) {
-        String[] s1 = {"ABACD", "BCEFD"};
-        String[] s2 = {"ABCD" , "AABB"};
-        System.out.println(Arrays.toString(solution(s1, s2)));
+        for (int i = 0; i < targets.length; i++) {
+            String target = targets[i];
+            int sum = 0;
+            for (int j = 0; j < target.length(); j++) {
+                int alpha = target.charAt(j);
+                if (!map.containsKey(alpha)) {
+                    sum = -1;
+                    break;
+                 }
+                sum += map.get(alpha);
+            }
+            answer[i] = sum;
+        }
+        return answer;
     }
 }
