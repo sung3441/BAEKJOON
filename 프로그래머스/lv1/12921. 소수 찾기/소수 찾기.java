@@ -5,7 +5,7 @@ class Solution {
         for (int i = 2; i < arr.length; i++) {
             arr[i] = true;
         }
-        for (int i = 2; i + i < arr.length; i++) {
+        for (int i = 2; i < Math.sqrt(arr.length); i++) {
             for (int j = i + i; j < arr.length; j += i) {
                 if (arr[j]) {
                     arr[j] = false;
