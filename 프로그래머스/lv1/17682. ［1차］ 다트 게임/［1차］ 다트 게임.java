@@ -34,9 +34,6 @@ class Solution {
                 indexCount = 0;
                 gameCount++;
             }
-            System.out.println(scores[0]);
-            System.out.println(scores[1]);
-            System.out.println(scores[2]);
         }
           
         return scores[0] + scores[1] + scores[2];
