@@ -9,7 +9,7 @@ class Solution {
         
         for (int i = 0; i < survey.length; i++) {
             String s = survey[i];
-            if (choices[i] == 0) {
+            if (choices[i] == 4) {
                 continue;
             }
             char target = choices[i] > 4 ? s.charAt(1) : s.charAt(0);
@@ -17,10 +17,7 @@ class Solution {
         }
         
         for (char[] a : arr) {
-            int score1 = map.getOrDefault(a[0], 0);
-            int score2 = map.getOrDefault(a[1], 0);
-            
-            answer += score1 - score2 > -1 ? a[0] : a[1];
+            answer += map.getOrDefault(a[0], 0) - map.getOrDefault(a[1], 0) > -1 ? a[0] : a[1];
         }
         
         return answer;
