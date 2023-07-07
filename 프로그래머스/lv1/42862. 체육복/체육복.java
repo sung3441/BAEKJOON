@@ -3,24 +3,22 @@ import java.util.stream.Collectors;
 
 class Solution {
     public int solution(int n, int[] lost, int[] reserve) {
+        int answer = n;
+        int[] arr = new int[n + 2];
         
-        int answer = n - lost.length;
-        HashSet<Integer> reserveSet = new HashSet();
-        Set<Integer> lostSet = Arrays.stream(lost).boxed().collect(Collectors.toSet());
-        Arrays.sort(lost);
-        Arrays.sort(reserve);
+        for (int i : lost) arr[i]--;
+        for (int i : reserve) arr[i]++;
         
-        for (int i = 0; i < lost.length; i++) {
-            int target = lost[i];
-            for (int j = 0; j < reserve.length; j++) {
-                int clothes = reserve[j];
-                if (target == clothes || target - 1 == clothes || target + 1 == clothes) {
-                    if (reserveSet.contains(clothes) || (target != clothes && lostSet.contains(clothes))) {
-                        continue;
-                    }
-                    answer++;
-                    reserveSet.add(clothes);
-                    break;
+        for (int i = 1; i <= n; i++) {
+            if (arr[i] == -1) {
+                if (arr[i - 1] == 1) {
+                    arr[i]++;
+                    arr[i - 1]--;
+                } else if (arr[i + 1] == 1) {
+                    arr[i]++;
+                    arr[i + 1]--;
+                } else {
+                    answer--;
                 }
             }
         }
