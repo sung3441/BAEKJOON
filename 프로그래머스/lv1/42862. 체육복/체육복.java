@@ -1,27 +1,36 @@
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.HashMap;
 
 class Solution {
     public int solution(int n, int[] lost, int[] reserve) {
-        int answer = n;
-        int[] arr = new int[n + 2];
+
+        HashMap<Integer, Integer> map = new HashMap();
+        int answer = n - lost.length;
         
-        for (int i : lost) arr[i]--;
-        for (int i : reserve) arr[i]++;
+        for (int i = 0; i < lost.length; i++) {
+            map.put(lost[i], -1);
+        }
+        
+        for (int i = 0; i < reserve.length; i++) {
+            if (map.containsKey(reserve[i])) {
+                map.put(reserve[i], 0);
+                answer++;
+                continue;
+            }
+            map.put(reserve[i], 1);
+        }
         
         for (int i = 1; i <= n; i++) {
-            if (arr[i] == -1) {
-                if (arr[i - 1] == 1) {
-                    arr[i]++;
-                    arr[i - 1]--;
-                } else if (arr[i + 1] == 1) {
-                    arr[i]++;
-                    arr[i + 1]--;
-                } else {
-                    answer--;
+            if (map.getOrDefault(i, 0) == -1) {
+                if (map.getOrDefault(i - 1, 0) == 1) {
+                    map.put(i - 1, 0);
+                    answer++;
+                } else if (map.getOrDefault(i + 1, 0) == 1) {
+                    map.put(i + 1, 0);
+                    answer++;
                 }
-            }
+            }   
         }
+        
         return answer;
     }
 }
