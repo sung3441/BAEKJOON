@@ -18,13 +18,11 @@ public class Main {
 		Arrays.sort(arr);
 		
 		int count = 1;
-		int start = arr[0].start;
 		int end = arr[0].end;
 		
 		for (int i = 1; i < arr.length; i++) {
 		    if (arr[i].start >= end) {
 		        count++;
-		        start = arr[i].start;
 		        end = arr[i].end;
 		    }
 		}
