@@ -20,7 +20,7 @@ public class Main {
 		}
 		
 		int lowPrice = price[0];
-		int sum = distance[0] * lowPrice;
+		long sum = distance[0] * lowPrice;
 		
 		for (int i = 1; i < n - 1; i++) {
 			lowPrice = Math.min(lowPrice, price[i]);
