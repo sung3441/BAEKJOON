@@ -24,7 +24,7 @@ public class Main {
 		
 		for (int i = 1; i < n - 1; i++) {
 			lowPrice = Math.min(lowPrice, price[i]);
-			sum += distance[i] * lowPrice;
+			sum += (long) distance[i] * lowPrice;
 		}
 		
 		System.out.print(sum);
