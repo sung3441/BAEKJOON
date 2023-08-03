@@ -10,11 +10,7 @@ public class Main {
         int next = 1;
         
         for (int i = 0; i < n; i++) {
-            int num = sc.nextInt();
-            if (num == next) {
-                next++;
-                continue;
-            }
+            stack.push(sc.nextInt());
             
             while (!stack.isEmpty()) {
                 if (stack.peek() == next) {
@@ -24,17 +20,6 @@ public class Main {
                 }
                 break;
             }
-            
-            stack.push(num);
-        }
-        
-        while (!stack.isEmpty()) {
-            if (stack.peek() == next) {
-                next++;
-                stack.pop();
-                continue;
-            }
-            break;
         }
         
         System.out.print(stack.isEmpty() ? "Nice" : "Sad");
