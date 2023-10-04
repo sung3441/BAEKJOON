@@ -1,31 +1,36 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         int[] array = new int[n];
+        int[] gaps = new int[n - 1];
 
         for (int i = 0; i < n; i++) {
             array[i] = Integer.parseInt(br.readLine());
+            
+            if (i > 0) {
+                gaps[i - 1] = array[i] - array[i - 1];
+            }
         }
-
-        int gcd = array[1] - array[0];
-        for (int i = 1; i < array.length - 1; i++) {
-            int minus = array[i] - array[i - 1];
-            gcd = gcd(Math.max(gcd, minus), Math.min(gcd, minus));
+        
+        for (int i = 0; i <= gaps.length - 2; i++) {
+            gaps[i + 1] = gcd(gaps[i], gaps[i + 1]);
         }
+        
+        int gap = gaps[gaps.length - 1];
 
-        System.out.println(((array[n - 1] - array[0]) / gcd) - n + 1);
+        System.out.println((array[n - 1] - array[0]) / gap - (n - 1));
     }
 
     static int gcd(int big, int small) {
-        int remain = big % small;
-        if (remain == 0) {
-            return small;
+        while (small > 0) {
+            int temp = big;
+            big = small;
+            small = temp % small;
         }
-        return gcd(small, remain);
+        return big;
     }
 }
