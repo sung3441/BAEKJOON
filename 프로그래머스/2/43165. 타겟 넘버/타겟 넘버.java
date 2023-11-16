@@ -3,20 +3,24 @@ import java.util.Arrays;
 class Solution {
     
     int answer = 0;
+    int[] numbers;
+    int target;
     
     public int solution(int[] numbers, int target) {
-        dfs(numbers, 0, target, 0);
+        this.numbers = numbers;
+        this.target = target;
+        dfs(0, 0);
         return answer;
     }
     
-    void dfs(int[] numbers, int depth, int target, int sum) {
+    void dfs(int depth, int sum) {
         if (numbers.length == depth) {
             if (sum == target) {
                 answer++;
             }
             return;
         }
-        dfs(numbers, depth + 1, target, sum + numbers[depth]);
-        dfs(numbers, depth + 1, target, sum - numbers[depth]);
-    }
+        dfs(depth + 1, sum + numbers[depth]);
+        dfs(depth + 1, sum - numbers[depth]);
+    }   
 }
