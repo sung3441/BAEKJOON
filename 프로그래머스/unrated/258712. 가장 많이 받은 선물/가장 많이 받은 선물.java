@@ -4,8 +4,6 @@ import java.util.HashMap;
 class Solution {
     public int solution(String[] friends, String[] gifts) {
         int result = 0;
-        final int sendCountIndex = 0;
-        final int receiveCountIndex = 1;
         Map<String, Map<String, Integer>> friendsMap = new HashMap<>();
         Map<String, Integer[]> presentCountMap = new HashMap<>(); // 0: send, 1: receive
         for (String friendName : friends) {
@@ -20,8 +18,8 @@ class Solution {
             Map<String, Integer> sender = friendsMap.get(senderName);
             sender.put(receiverName, sender.getOrDefault(receiverName, 0) + 1);
 
-            presentCountMap.get(senderName)[sendCountIndex] += 1;
-            presentCountMap.get(receiverName)[receiveCountIndex] += 1;
+            presentCountMap.get(senderName)[0] += 1;
+            presentCountMap.get(receiverName)[1] += 1;
         }
 
         // 내가 받을 경우에만 결과 처리
@@ -41,8 +39,8 @@ class Solution {
                 }
 
                 if (sendCount == receiveCount) {
-                    int senderPresentCount = presentCountMap.get(senderName)[sendCountIndex] - presentCountMap.get(senderName)[receiveCountIndex];
-                    int receiverPresentCount = presentCountMap.get(receiverName)[sendCountIndex] - presentCountMap.get(receiverName)[receiveCountIndex];
+                    int senderPresentCount = presentCountMap.get(senderName)[0] - presentCountMap.get(senderName)[1];
+                    int receiverPresentCount = presentCountMap.get(receiverName)[0] - presentCountMap.get(receiverName)[1];
                     if (receiverPresentCount >= senderPresentCount) {
                         continue;
                     }
